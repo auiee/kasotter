@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>過疎ったー</title>
     <style>
-      body{
+      body {
       margin: 0;
-      }
+       }
         #container {
             position: relative;
             width: 100vw;
             height: 100vh;
-            border: 1px solid #ccc;
             overflow: hidden;
         }
         .character {
@@ -28,6 +27,7 @@
         const container = document.getElementById('container');
         const character = '人';
         const numCharacters = 10;
+        const removeInterval = 2000; // 2秒ごとに「人」を1つ削除
 
         function getRandomPosition() {
             const x = Math.random() * (container.clientWidth - 30);
@@ -35,7 +35,7 @@
             return { x, y };
         }
 
-        for (let i = 0; i < numCharacters; i++) {
+        function createCharacter() {
             const div = document.createElement('div');
             div.className = 'character';
             div.textContent = character;
@@ -45,7 +45,26 @@
             div.style.top = `${y}px`;
 
             container.appendChild(div);
+            return div;
         }
+
+        const characters = [];
+
+        // 初期配置
+        for (let i = 0; i < numCharacters; i++) {
+            characters.push(createCharacter());
+        }
+
+        function removeCharacter() {
+            if (characters.length > 0) {
+                // 末尾の「人」を削除
+                const characterToRemove = characters.pop();
+                container.removeChild(characterToRemove);
+            }
+        }
+
+        // 一定間隔で「人」を削除
+        setInterval(removeCharacter, removeInterval);
     </script>
 </body>
 </html>
