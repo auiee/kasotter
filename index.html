@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ランダムに「人」を配置</title>
+    <style>
+        #container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            border: 1px solid #ccc;
+            overflow: hidden;
+        }
+        .character {
+            position: absolute;
+            font-size: 24px;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+    <script>
+        const container = document.getElementById('container');
+        const character = '人';
+        const numCharacters = 5;
+
+        function getRandomPosition() {
+            const x = Math.random() * (container.clientWidth - 30);
+            const y = Math.random() * (container.clientHeight - 30);
+            return { x, y };
+        }
+
+        for (let i = 0; i < numCharacters; i++) {
+            const div = document.createElement('div');
+            div.className = 'character';
+            div.textContent = character;
+
+            const { x, y } = getRandomPosition();
+            div.style.left = `${x}px`;
+            div.style.top = `${y}px`;
+
+            container.appendChild(div);
+        }
+    </script>
+</body>
+</html>
