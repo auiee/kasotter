@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ランダムに「人」を配置</title>
+    <title>過疎ったー</title>
     <style>
+      body{
+      margin: 0;
+      }
         #container {
             position: relative;
             width: 100vw;
@@ -24,7 +27,7 @@
     <script>
         const container = document.getElementById('container');
         const character = '人';
-        const numCharacters = 5;
+        const numCharacters = 10;
 
         function getRandomPosition() {
             const x = Math.random() * (container.clientWidth - 30);
